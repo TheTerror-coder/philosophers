@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 21:27:13 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/08/12 20:21:36 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2023/08/13 16:05:51 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,14 @@
 # include<stdio.h>
 # include<string.h>
 # include<sys/time.h>
+# include<time.h>
 
 
 int	ft_parse(t_meal *meal, int argc, char **argv);
+int	ft_initphilo(t_meal *meal);
+time_t	ft_time_usec(void);
+time_t	ft_time_msec(void);
+time_t	ft_time_sec(void);
+void	*ft_philo_routine(void *arg);
 
 #endif

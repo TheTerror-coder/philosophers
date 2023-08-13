@@ -6,7 +6,7 @@
 #    By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/06 21:26:28 by TheTerror         #+#    #+#              #
-#    Updated: 2023/08/12 20:08:23 by TheTerror        ###   ########lyon.fr    #
+#    Updated: 2023/08/13 16:00:02 by TheTerror        ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,7 @@ CC = 				cc
 CFLAGS=				-Wall -Werror -Wextra
 RM =				rm -rf
 
-SRC = main.c parsing.c
-#philo.c init.c
+SRC = main.c parsing.c time.c philo.c init.c
 
 OBJ = $(SRC:%.c=%.o)
 
