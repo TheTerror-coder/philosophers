@@ -1,0 +1,82 @@
+
+Test avec les philo qui sont lancés à 100µs d'interval et time start pris avant les threads
+./philo 5 800 200 200
+
+0ms 1 is thinking
+1ms 1 has taken a fork
+1ms 1 has taken a fork
+1ms 1 is eating
+0ms 2 is thinking
+0ms 3 is thinking
+1ms 3 has taken a fork
+1ms 3 has taken a fork
+1ms 3 is eating
+0ms 4 is thinking
+0ms 5 is thinking
+201ms 3 is sleeping
+201ms 1 is sleeping
+201ms 2 has taken a fork
+201ms 2 has taken a fork
+201ms 2 is eating
+201ms 5 has taken a fork
+201ms 5 has taken a fork
+201ms 5 is eating
+201ms 4 has taken a fork
+401ms 3 is thinking
+401ms 4 has taken a fork
+401ms 4 is eating
+401ms 5 is sleeping
+401ms 1 is thinking
+401ms 1 has taken a fork
+401ms 1 has taken a fork
+401ms 1 is eating
+401ms 2 is sleeping
+601ms 2 is thinking
+601ms 2 has taken a fork
+601ms 2 has taken a fork
+601ms 2 is eating
+601ms 4 is sleeping
+601ms 5 is thinking
+601ms 5 has taken a fork
+601ms 5 has taken a fork
+601ms 5 is eating
+601ms 1 is sleeping
+601ms 3 has taken a fork
+802ms 4 is thinking
+802ms 3 died
+802ms 2 is sleeping
+802ms 1 is thinking
+802ms 5 is sleeping
+802ms 4 died
+802ms 1 died
+803ms 2 died
+803ms 5 died
+
+
+jm@jm-NMH-WCX9:~/Desktop/philosophers/philo$ ./philo 4 310 200 100
+0ms 1 is thinking
+1ms 1 has taken a fork
+1ms 1 has taken a fork
+1ms 1 is eating
+0ms 2 is thinking
+0ms 3 is thinking
+1ms 3 has taken a fork
+1ms 3 has taken a fork
+1ms 3 is eating
+0ms 4 is thinking
+201ms 1 is sleeping
+201ms 3 is sleeping
+201ms 4 has taken a fork
+201ms 4 has taken a fork
+201ms 2 has taken a fork
+201ms 2 has taken a fork
+201ms 2 is eating
+201ms 4 is eating
+301ms 1 is thinking
+301ms 3 is thinking
+402ms 2 is sleeping
+402ms 3 died
+402ms 1 died
+402ms 4 is sleeping
+403ms 2 died
+403ms 4 died

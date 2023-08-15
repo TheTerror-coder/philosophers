@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 15:37:56 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/08/13 15:38:28 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2023/08/15 23:10:18 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 time_t	ft_time_usec(void)
 {
-	struct timeval tv;
+	struct timeval	tv;
 
 	if (gettimeofday(&tv, NULL))
 		return (-1);
@@ -23,7 +23,7 @@ time_t	ft_time_usec(void)
 
 time_t	ft_time_msec(void)
 {
-	struct timeval tv;
+	struct timeval	tv;
 
 	if (gettimeofday(&tv, NULL))
 		return (-1);
@@ -32,7 +32,7 @@ time_t	ft_time_msec(void)
 
 time_t	ft_time_sec(void)
 {
-	struct timeval tv;
+	struct timeval	tv;
 
 	if (gettimeofday(&tv, NULL))
 		return (-1);

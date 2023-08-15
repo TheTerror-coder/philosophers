@@ -6,29 +6,60 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 15:54:20 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/08/13 18:48:27 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2023/08/15 23:05:51 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	ft_initphilo(t_meal *meal)
+int	ft_init_philo(t_meal *meal);
+
+int	ft_initmem(t_meal *meal)
 {
-	meal->philo1 = malloc(sizeof(t_philo));
-	if (!meal->philo1)
+	int	i;
+
+	i = -1;
+	meal->philos = malloc(sizeof(t_philo *) * meal->nbr_of_philo);
+	if (!meal->philos)
 		return (0);
-	meal->philo2 = malloc(sizeof(t_philo));
-	if (!meal->philo2)
-		return (0);
-	meal->philo1->num_philo = 1;
-	meal->philo2->num_philo = 2;
-	meal->philo1->left_fork = malloc(sizeof(pthread_mutex_t));
-	meal->philo2->left_fork = malloc(sizeof(pthread_mutex_t));
-	meal->philo1->right_fork = meal->philo2->left_fork;
-	meal->philo2->right_fork = meal->philo1->left_fork;
-	pthread_mutex_init(meal->philo1->left_fork, NULL);
-	pthread_mutex_init(meal->philo2->left_fork, NULL);
-	meal->philo1->meal = meal;
-	meal->philo2->meal = meal;
+	memset(meal->philos, 0, sizeof(t_philo *) * meal->nbr_of_philo);
+	while (++i < meal->nbr_of_philo)
+	{
+		meal->philos[i] = malloc(sizeof(t_philo));
+		if (!meal->philos[i])
+			return (0);
+		meal->i_free++;
+		memset(meal->philos[i], 0, sizeof(t_philo));
+	}
+	i = -1;
+	while (++i < meal->nbr_of_philo)
+	{
+		meal->philos[i]->right_fork = malloc(sizeof(pthread_mutex_t));
+		if (!meal->philos[i]->right_fork)
+			return (0);
+		pthread_mutex_init(meal->philos[i]->right_fork, NULL);
+	}
+	ft_init_philo(meal);
+	return (1);
+}
+
+int	ft_init_philo(t_meal *meal)
+{
+	int	i;
+
+	i = -1;
+	while (++i < meal->nbr_of_philo)
+	{
+		meal->philos[i]->meal = meal;
+		meal->philos[i]->num_philo = i + 1;
+		meal->philos[i]->meal_countdown = meal->nb_meal_max;
+		if (i == 0 && meal->nbr_of_philo > 1)
+			meal->philos[i]->left_fork = \
+						meal->philos[meal->nbr_of_philo - 1]->right_fork;
+		else if (meal->nbr_of_philo > 1)
+			meal->philos[i]->left_fork = meal->philos[i - 1]->right_fork;
+		else
+			meal->philos[i]->left_fork = NULL;
+	}
 	return (1);
 }
