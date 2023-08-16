@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 19:35:13 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/08/15 23:08:07 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2023/08/16 14:41:30 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,12 @@
 int	ft_launch(t_meal *meal);
 int	ft_free_meal(t_meal *meal);
 
+/* --------------------------- main() --------------------------------------- */
+/* --- Initialize the main structure ---------------------------------------- */
+/* --- Launch the parsing --------------------------------------------------- */
+/* --- Launch the philosophers initialisation ------------------------------- */
+/* --- Launch the threads launcher function --------------------------------- */
+/* -------------------------------------------------------------------------- */
 int	main(int argc, char **argv)
 {
 	t_meal	*meal;
@@ -30,6 +36,10 @@ int	main(int argc, char **argv)
 	return (!ft_launch(meal));
 }
 
+/* --------------------------- ft_launch() ---------------------------------- */
+/* --- Launch all the threads; philosophers analogy. ------------------------ */
+/* --- Launch at the end the memory cleaner function ------------------------ */
+/* -------------------------------------------------------------------------- */
 int	ft_launch(t_meal *meal)
 {
 	int	i;
@@ -47,6 +57,9 @@ int	ft_launch(t_meal *meal)
 	return (ft_free_meal(meal));
 }
 
+/* --------------------------- ft_free_meal() ------------------------------- */
+/* --- Close and Free all memory entities where it is required -------------- */
+/* -------------------------------------------------------------------------- */
 int	ft_free_meal(t_meal *meal)
 {
 	int	i;

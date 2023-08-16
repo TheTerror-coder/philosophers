@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 21:27:42 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/08/15 23:07:09 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2023/08/16 14:21:47 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,14 @@
 
 # include<pthread.h>
 
+/* -------------------------------------------------------------------------- */
+/* ---------------------------- Structures ---------------------------------- */
+/* -------------------------------------------------------------------------- */
+
 typedef struct s_meal	t_meal;
+
+/* ------------ Structure specific to every philosopher --------------------- */
+
 typedef struct s_philo
 {
 	t_meal			*meal;
@@ -31,6 +38,8 @@ typedef struct s_philo
 	pthread_mutex_t	*right_fork;
 	pthread_mutex_t	*left_fork;
 }				t_philo;
+
+/* -------------------------- Main Structure -------------------------------- */
 
 struct s_meal
 {
