@@ -6,11 +6,13 @@
 #    By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/06 21:26:28 by TheTerror         #+#    #+#              #
-#    Updated: 2023/08/15 22:48:58 by TheTerror        ###   ########lyon.fr    #
+#    Updated: 2023/08/16 02:37:56 by TheTerror        ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
+
+OBJ_PATH = ./objs/
 
 INCLUDE = preprocss.h philo.h
 
@@ -21,15 +23,13 @@ RM =				rm -rf
 
 SRC = main.c parsing.c time.c philo.c init.c activity.c
 
-OBJ = $(SRC:%.c=%.o)
+OBJ = $(addprefix $(OBJ_PATH), $(SRC:%.c=%.o))
 
-%.o : %.c $(INCLUDE)
+$(OBJ_PATH)%.o : %.c $(INCLUDE)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME) : $(OBJ) $(INCLUDE)
 	$(CC) $(CFLAGS) -I. $(OBJ) -o $@
-
-
 
 clean :
 	@$(RM) $(OBJ)
