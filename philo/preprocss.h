@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 21:27:42 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/11/05 17:18:21 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2023/11/05 18:59:57 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ typedef struct s_philo
 	time_t			ms_lastmeal;
 	time_t			timestamp;
 	time_t			time_before;
-	time_t			time_start;
 	int				meal_countdown;
 	pthread_t		thread;
 	pthread_mutex_t	*right_fork;
@@ -50,6 +49,7 @@ struct s_meal
 	time_t			time_to_die;
 	time_t			time_to_eat;
 	time_t			time_to_sleep;
+	time_t			time_start;
 	int				hellsouls;
 	int				undeads;
 	int				nb_meal_max;

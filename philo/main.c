@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 19:35:13 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/11/05 17:19:07 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2023/11/05 18:05:39 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,11 @@ int	ft_launch(t_meal *meal)
 	int	i;
 
 	i = -1;
+	meal->time_start = ft_time_msec();
 	while (++i < meal->nbr_of_philo)
 	{
 		pthread_create(&meal->philos[i]->thread, NULL, \
-								ft_philo_routine, meal->philos[i]);
+								philo_routine, meal->philos[i]);
 		usleep(100);
 	}
 	i = -1;
