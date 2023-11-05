@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 19:35:13 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/08/16 14:41:30 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2023/11/05 17:19:07 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,9 @@ int	ft_free_meal(t_meal *meal)
 	int	i;
 
 	i = -1;
+	pthread_mutex_destroy(&meal->access);
+	pthread_mutex_destroy(&meal->display);
+	pthread_mutex_destroy(&meal->deathrow);
 	while (++i < meal->i_free)
 	{
 		if (meal->philos[i]->right_fork)

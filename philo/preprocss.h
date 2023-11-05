@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 21:27:42 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/08/16 14:21:47 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2023/11/05 17:18:21 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ struct s_meal
 	int				hellsouls;
 	int				undeads;
 	int				nb_meal_max;
+	pthread_mutex_t	access;
+	pthread_mutex_t	display;
 	pthread_mutex_t	deathrow;
 	t_philo			**philos;
 };

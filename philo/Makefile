@@ -6,7 +6,7 @@
 #    By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/06 21:26:28 by TheTerror         #+#    #+#              #
-#    Updated: 2023/08/16 13:54:59 by TheTerror        ###   ########lyon.fr    #
+#    Updated: 2023/08/17 21:55:21 by TheTerror        ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ OBJ = $(addprefix $(OBJ_PATH), $(SRC:%.c=%.o))
 
 ### RULES ###
 
-all : mk_objs $(NAME)
+all : mk_objs_dir $(NAME)
 
 $(OBJ_PATH)%.o : %.c $(INCLUDE)
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -41,7 +41,7 @@ $(OBJ_PATH)%.o : %.c $(INCLUDE)
 $(NAME) : $(OBJ) $(INCLUDE)
 	$(CC) $(CFLAGS) -I. $(OBJ) -o $@
 
-mk_objs :
+mk_objs_dir :
 	@mkdir -p $(OBJ_PATH)
 
 clean :

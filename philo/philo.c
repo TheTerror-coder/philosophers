@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 21:27:18 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/08/15 23:09:09 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2023/11/05 17:29:03 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ void	*ft_philo_routine(void *arg)
 
 	philo = arg;
 	fdbk = 0;
+	pthread_mutex_lock(&philo->meal->display);
 	philo->time_start = ft_time_msec();
-	printf("0ms %d is thinking\n", philo->num_philo);
+	printf("%ldms %d is thinking\n", ft_time_msec() - philo->time_start, philo->num_philo);
+	pthread_mutex_unlock(&philo->meal->display);
 	philo->ms_lastmeal = philo->time_start;
 	while (1)
 	{
@@ -72,26 +74,37 @@ int	ft_go_to_hell(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->meal->deathrow);
 	ft_display_status("died", philo);
+	pthread_mutex_lock(&philo->meal->access);
 	philo->meal->hellsouls++;
+	pthread_mutex_unlock(&philo->meal->access);
 	pthread_mutex_unlock(&philo->meal->deathrow);
 	return (0);
 }
 
 int	ft_thegrimreaper(t_philo *philo)
 {
+	int	fdbk;
+
+	fdbk = 1;
+	pthread_mutex_lock(&philo->meal->access);
 	if (philo->meal->undeads >= philo->meal->nbr_of_philo)
-		return (ft_go_to_hell(philo));
-	if (philo->meal->hellsouls)
+		fdbk = 0;
+	else if (philo->meal->hellsouls)
+		fdbk = 0;
+	pthread_mutex_unlock(&philo->meal->access);
+	if (!fdbk)
 		return (ft_go_to_hell(philo));
 	philo->timestamp = ft_time_msec() - philo->time_start;
 	if ((philo->timestamp - philo->ms_lastmeal) > philo->meal->time_to_die)
 		return (ft_go_to_hell(philo));
-	return (1);
+	return (fdbk);
 }
 
 int	ft_display_status(char *str, t_philo *philo)
 {
+	pthread_mutex_lock(&philo->meal->display);
 	philo->timestamp = ft_time_msec() - philo->time_start;
 	printf("%ldms %d %s\n", philo->timestamp, philo->num_philo, str);
+	pthread_mutex_unlock(&philo->meal->display);
 	return (1);
 }

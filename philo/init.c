@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 15:54:20 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/08/16 14:42:03 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2023/11/05 17:18:37 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ int	ft_initmem(t_meal *meal)
 	int	i;
 
 	i = -1;
+	pthread_mutex_init(&meal->access, NULL);
+	pthread_mutex_init(&meal->display, NULL);
+	pthread_mutex_init(&meal->deathrow, NULL);
 	meal->philos = malloc(sizeof(t_philo *) * meal->nbr_of_philo);
 	if (!meal->philos)
 		return (0);

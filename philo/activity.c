@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 22:42:48 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/08/15 23:01:28 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2023/11/05 17:27:53 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,9 @@ int	ft_eat(t_philo *philo)
 	if (philo->meal->nb_meal_max > 0 && !philo->meal_countdown)
 	{
 		pthread_mutex_lock(&philo->meal->deathrow);
+		pthread_mutex_lock(&philo->meal->access);
 		philo->meal->undeads++;
+		pthread_mutex_unlock(&philo->meal->access);
 		pthread_mutex_unlock(&philo->meal->deathrow);
 	}
 	return (1);
