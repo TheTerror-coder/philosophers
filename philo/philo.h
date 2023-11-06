@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 21:27:13 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/11/05 18:18:19 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2023/11/06 15:45:43 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,9 @@ int		display_status(char *str, t_philo *philo);
 int		ft_think(t_philo *philo, time_t time_to_wait, time_t time_til_death);
 int		ft_eat(t_philo *philo);
 int		ft_sleep(t_philo *philo);
-int		agonize(t_philo *philo);
+int		agonize(t_philo *philo, pthread_mutex_t *locked1, \
+											pthread_mutex_t *locked2);
+int	unlock_then_die(pthread_mutex_t *locked1, pthread_mutex_t *locked2);
 
 /* -------------------------------- time.c ---------------------------------- */
 

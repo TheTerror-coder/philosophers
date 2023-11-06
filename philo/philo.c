@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 21:27:18 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/11/05 18:59:08 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2023/11/06 15:53:19 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,8 @@
 void	*philo_routine(void *arg)
 {
 	t_philo	*philo;
-	int		fdbk;
 
 	philo = arg;
-	fdbk = 0;
 	philo->ms_lastmeal = ft_time_msec() -  philo->meal->time_start;
 	pthread_mutex_lock(&philo->meal->display);
 	printf("%ldms %d is thinking\n", philo->ms_lastmeal, philo->num_philo);
@@ -27,15 +25,11 @@ void	*philo_routine(void *arg)
 	{
 		if (!thegrimreaper(philo))
 			return ((void *) 0);
-		fdbk = ft_eat(philo);
-		if (philo->left_fork)
-			pthread_mutex_unlock(philo->left_fork);
+		if (!ft_eat(philo))
+			return ((void *) 0);
+		pthread_mutex_unlock(philo->left_fork);
 		pthread_mutex_unlock(philo->right_fork);
-		if (!fdbk)
-			return ((void *) 0);
-		if (!ft_sleep(philo))
-			return ((void *) 0);
-		if (!ft_think(philo, 0, 0))
+		if (!ft_sleep(philo) || !ft_think(philo, 0, 0))
 			return ((void *) 0);
 		usleep(1000);
 	}
@@ -55,16 +49,16 @@ int	ft_lock(t_philo *philo, pthread_mutex_t *fork1, pthread_mutex_t *fork2)
 		fork2 = philo->right_fork;
 	}
 	if (!fork1)
-		return (agonize(philo));
+		return (agonize(philo, NULL, NULL));
 	pthread_mutex_lock(fork1);
 	if (!thegrimreaper(philo))
-		return (0);
+		return (unlock_then_die(fork1, NULL));
 	display_status("has taken a fork", philo);
 	if (!fork2)
-		return (agonize(philo));
+		return (agonize(philo, fork1, NULL));
 	pthread_mutex_lock(fork2);
 	if (!thegrimreaper(philo))
-		return (0);
+		return (unlock_then_die(fork1, fork2));
 	display_status("has taken a fork", philo);
 	return (1);
 }
