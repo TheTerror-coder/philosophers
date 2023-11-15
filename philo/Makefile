@@ -6,7 +6,7 @@
 #    By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/06 21:26:28 by TheTerror         #+#    #+#              #
-#    Updated: 2023/11/15 16:06:07 by TheTerror        ###   ########lyon.fr    #
+#    Updated: 2023/11/15 16:28:51 by TheTerror        ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ INCLUDE = preprocss.h philo.h
 
 ### VARIABLES ###
 CC = 				cc
-CFLAGS=				-Wall -Werror -Wextra
+CFLAGS=				-Wall -Werror -Wextra -pthread
 RM =				rm -rf
 
 ### SOURCE FILES ###
