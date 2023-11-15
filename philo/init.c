@@ -6,12 +6,13 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 15:54:20 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/11/05 17:18:37 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2023/11/15 15:42:56 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+int	ft_init_forks(t_meal *meal);
 int	ft_init_philo(t_meal *meal);
 
 int	ft_initmem(t_meal *meal)
@@ -34,6 +35,15 @@ int	ft_initmem(t_meal *meal)
 		meal->i_free++;
 		memset(meal->philos[i], 0, sizeof(t_philo));
 	}
+	if (!ft_init_forks(meal))
+		return (0);
+	return (1);
+}
+
+int	ft_init_forks(t_meal *meal)
+{
+	int	i;
+
 	i = -1;
 	while (++i < meal->nbr_of_philo)
 	{

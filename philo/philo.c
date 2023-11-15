@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 21:27:18 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/11/06 15:53:19 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2023/11/15 15:39:01 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	*philo_routine(void *arg)
 	t_philo	*philo;
 
 	philo = arg;
-	philo->ms_lastmeal = ft_time_msec() -  philo->meal->time_start;
+	philo->ms_lastmeal = ft_time_msec() - philo->meal->time_start;
 	pthread_mutex_lock(&philo->meal->display);
 	printf("%ldms %d is thinking\n", philo->ms_lastmeal, philo->num_philo);
 	pthread_mutex_unlock(&philo->meal->display);

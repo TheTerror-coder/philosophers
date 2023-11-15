@@ -6,7 +6,7 @@
 #    By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/06 21:26:28 by TheTerror         #+#    #+#              #
-#    Updated: 2023/08/17 21:55:21 by TheTerror        ###   ########lyon.fr    #
+#    Updated: 2023/11/15 16:06:07 by TheTerror        ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,8 @@ $(OBJ_PATH)%.o : %.c $(INCLUDE)
 
 $(NAME) : $(OBJ) $(INCLUDE)
 	$(CC) $(CFLAGS) -I. $(OBJ) -o $@
+
+c : all clean
 
 mk_objs_dir :
 	@mkdir -p $(OBJ_PATH)
