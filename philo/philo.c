@@ -6,7 +6,7 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 21:27:18 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/11/15 15:39:01 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2023/11/17 15:32:11 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,9 @@ void	*philo_routine(void *arg)
 		if (!ft_eat(philo))
 			return ((void *) 0);
 		pthread_mutex_unlock(philo->left_fork);
+		usleep(1000);
 		pthread_mutex_unlock(philo->right_fork);
-		if (!ft_sleep(philo) || !ft_think(philo, 0, 0))
+		if (!ft_sleep(philo) || !ft_think(philo))
 			return ((void *) 0);
 		usleep(1000);
 	}
@@ -38,7 +39,7 @@ void	*philo_routine(void *arg)
 
 int	ft_lock(t_philo *philo, pthread_mutex_t *fork1, pthread_mutex_t *fork2)
 {
-	if (philo->num_philo % 2)
+	if (philo->num_philo % 2 && philo->num_philo != philo->meal->nbr_of_philo)
 	{
 		fork1 = philo->right_fork;
 		fork2 = philo->left_fork;

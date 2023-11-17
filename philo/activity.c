@@ -6,32 +6,34 @@
 /*   By: TheTerror <jfaye@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 22:42:48 by TheTerror         #+#    #+#             */
-/*   Updated: 2023/11/06 16:48:48 by TheTerror        ###   ########lyon.fr   */
+/*   Updated: 2023/11/17 15:51:57 by TheTerror        ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	ft_think(t_philo *philo, time_t time_to_wait, time_t time_til_death)
+int	ft_think(t_philo *philo)
 {
 	time_t	ms_tool;
+	time_t time_to_wait;
 
 	ms_tool = 0;
+	time_to_wait = 0;
 	display_status("is thinking", philo);
 	time_to_wait = philo->meal->time_to_eat - philo->meal->time_to_sleep;
-	philo->timestamp = ft_time_msec() - philo->meal->time_start;
-	time_til_death = \
-			philo->meal->time_to_die - (philo->timestamp - philo->ms_lastmeal);
-	if (time_to_wait > 0 && time_til_death > 0 && time_to_wait > time_til_death)
+	if (philo->meal->nbr_of_philo % 2)
+		time_to_wait += philo->meal->time_to_eat;
+	if (time_to_wait > 0)
 	{
-		while (1)
+		philo->time_before = ft_time_msec() - philo->meal->time_start;
+		while (ms_tool < time_to_wait)
 		{
 			usleep(1000);
 			if (!thegrimreaper(philo))
 				return (0);
-			ms_tool += 1;
-			if (ms_tool - 2 > time_til_death)
-				break ;
+			philo->timestamp = ft_time_msec() - philo->meal->time_start;
+			ms_tool += (philo->timestamp - philo->time_before);
+			philo->time_before = philo->timestamp;
 		}
 	}
 	return (1);
